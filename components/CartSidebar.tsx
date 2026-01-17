@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { CartItem } from '../types';
 import { STRAPI_URL } from '../constants';
@@ -58,8 +57,8 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
       <div className={`fixed right-0 top-0 h-full w-full max-w-sm bg-white z-50 shadow-2xl transform transition-transform duration-500 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="p-6 border-b border-brand-cream flex items-center justify-between bg-brand-black text-white">
           <div>
-            <h2 className="text-xl font-medium tracking-tight brand-serif">Keranjang Saya</h2>
-            <p className="text-[9px] uppercase tracking-[0.2em] text-brand-gold mt-1 font-bold">Assafwa Signature</p>
+            <h2 className="text-xl font-medium tracking-tight">Keranjang Saya</h2>
+            <p className="text-[9px] uppercase tracking-[0.2em] text-brand-gold mt-1 font-medium">Assafwa Signature</p>
           </div>
           <button onClick={onClose} className="p-2 hover:text-brand-gold transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,7 +71,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
           {!showForm && (
             <button 
               onClick={onClose}
-              className="w-full py-2 mb-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-brand-gold border border-brand-gold/30 rounded-sm hover:bg-brand-gold hover:text-white transition-all"
+              className="w-full py-2 mb-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] font-medium text-brand-gold border border-brand-gold/30 rounded-sm hover:bg-brand-gold hover:text-white transition-all"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -107,7 +106,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
                       <select 
                         value={item.selectedSize}
                         onChange={(e) => onUpdateSelection(item.cartKey!, e.target.value, item.selectedColor)}
-                        className="bg-transparent border border-brand-cream text-[10px] font-bold uppercase p-1 outline-none hover:border-brand-gold transition-colors text-brand-brown cursor-pointer"
+                        className="bg-transparent border border-brand-cream text-[10px] font-medium uppercase p-1 outline-none hover:border-brand-gold transition-colors text-brand-brown cursor-pointer"
                       >
                         {SIZES.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
@@ -115,21 +114,21 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
                       <select 
                         value={item.selectedColor}
                         onChange={(e) => onUpdateSelection(item.cartKey!, item.selectedSize, e.target.value)}
-                        className="bg-transparent border border-brand-cream text-[10px] font-bold uppercase p-1 outline-none hover:border-brand-gold transition-colors text-brand-brown cursor-pointer"
+                        className="bg-transparent border border-brand-cream text-[10px] font-medium uppercase p-1 outline-none hover:border-brand-gold transition-colors text-brand-brown cursor-pointer"
                       >
                         {COLORS.map(c => <option key={c} value={c}>{c}</option>)}
                       </select>
                     </div>
 
-                    <p className="text-brand-gold text-[13px] font-semibold font-sans">IDR {item.price.toLocaleString('id-ID')}</p>
+                    <p className="text-brand-gold text-[13px] font-medium">IDR {item.price.toLocaleString('id-ID')}</p>
                     
                     <div className="flex items-center justify-between mt-3">
                       <div className="flex items-center border border-brand-cream bg-white rounded-sm">
-                        <button onClick={() => onUpdateQty(item.cartKey!, -1)} className="px-2 py-0.5 hover:text-brand-gold transition-colors text-sm font-sans">-</button>
-                        <span className="px-1 text-[10px] font-bold font-sans">{item.quantity}</span>
-                        <button onClick={() => onUpdateQty(item.cartKey!, 1)} className="px-2 py-0.5 hover:text-brand-gold transition-colors text-sm font-sans">+</button>
+                        <button onClick={() => onUpdateQty(item.cartKey!, -1)} className="px-2 py-0.5 hover:text-brand-gold transition-colors text-sm">-</button>
+                        <span className="px-1 text-[10px] font-bold">{item.quantity}</span>
+                        <button onClick={() => onUpdateQty(item.cartKey!, 1)} className="px-2 py-0.5 hover:text-brand-gold transition-colors text-sm">+</button>
                       </div>
-                      <button onClick={() => onRemove(item.cartKey!)} className="text-[9px] uppercase tracking-widest text-red-800 font-bold hover:underline">Hapus</button>
+                      <button onClick={() => onRemove(item.cartKey!)} className="text-[9px] uppercase tracking-widest text-red-800 font-medium hover:underline">Hapus</button>
                     </div>
                   </div>
                 </div>
@@ -139,18 +138,18 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
             <div className="space-y-6 animate-fadeIn">
               <button 
                 onClick={() => setShowForm(false)}
-                className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-gray-400 hover:text-brand-black transition-colors"
+                className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-medium text-gray-400 hover:text-brand-black transition-colors"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
                 Kembali ke Keranjang
               </button>
-              <h3 className="brand-serif text-xl font-bold">Data Pengiriman</h3>
+              <h3 className="text-xl font-medium">Data Pengiriman</h3>
               <p className="text-[11px] text-gray-400 -mt-4 italic">Mohon lengkapi alamat untuk hitung ongkos kirim.</p>
               <div className="space-y-4">
                 <div>
-                  <label className="text-[9px] uppercase tracking-widest font-bold text-brand-gold block mb-1">Nama Lengkap</label>
+                  <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-1">Nama Lengkap</label>
                   <input 
                     type="text" 
                     className="w-full p-3 bg-brand-black border border-brand-cream rounded-sm text-sm text-white placeholder-gray-400 focus:border-brand-gold outline-none transition-colors" 
@@ -160,7 +159,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
                   />
                 </div>
                 <div>
-                  <label className="text-[9px] uppercase tracking-widest font-bold text-brand-gold block mb-1">No. WhatsApp</label>
+                  <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-1">No. WhatsApp</label>
                   <input 
                     type="tel" 
                     className="w-full p-3 bg-brand-black border border-brand-cream rounded-sm text-sm text-white placeholder-gray-400 focus:border-brand-gold outline-none transition-colors" 
@@ -170,7 +169,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
                   />
                 </div>
                 <div>
-                  <label className="text-[9px] uppercase tracking-widest font-bold text-brand-gold block mb-1">Alamat Lengkap</label>
+                  <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-1">Alamat Lengkap</label>
                   <textarea 
                     className="w-full p-3 bg-brand-black border border-brand-cream rounded-sm text-sm text-white placeholder-gray-400 focus:border-brand-gold outline-none h-24 transition-colors" 
                     placeholder="Nama Jalan, No Rumah, Kelurahan, Kecamatan..."
@@ -185,8 +184,8 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items
 
         <div className="p-6 border-t border-brand-cream bg-white">
           <div className="flex justify-between items-center mb-6">
-            <span className="text-gray-400 uppercase tracking-widest text-[9px] font-bold">Subtotal</span>
-            <span className="text-lg font-semibold text-brand-brown font-sans">IDR {total.toLocaleString('id-ID')}</span>
+            <span className="text-gray-400 uppercase tracking-widest text-[9px] font-medium">Subtotal</span>
+            <span className="text-lg font-medium text-brand-brown">IDR {total.toLocaleString('id-ID')}</span>
           </div>
           
           {showForm ? (

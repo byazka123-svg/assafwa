@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Product, CartItem } from '../types';
 
@@ -38,8 +37,8 @@ export const SelectionModal: React.FC<SelectionModalProps> = ({ product, isOpen,
         <div className="p-6">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold font-bold block mb-1">Pilihan Koleksi</span>
-              <h2 className="text-xl font-bold brand-serif text-brand-black">{product.name}</h2>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold font-medium block mb-1">Pilihan Koleksi</span>
+              <h2 className="text-xl font-medium text-brand-black">{product.name}</h2>
             </div>
             <button onClick={onClose} className="text-gray-400 hover:text-brand-black">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,7 +49,7 @@ export const SelectionModal: React.FC<SelectionModalProps> = ({ product, isOpen,
 
           <div className="space-y-8">
             <div>
-              <label className="text-[10px] uppercase tracking-widest font-bold text-brand-black block mb-4">Pilih Ukuran</label>
+              <label className="text-[10px] uppercase tracking-widest font-medium text-brand-black block mb-4">Pilih Ukuran</label>
               <div className="grid grid-cols-4 gap-2">
                 {SIZES.map(s => (
                   <button 
@@ -65,7 +64,7 @@ export const SelectionModal: React.FC<SelectionModalProps> = ({ product, isOpen,
             </div>
 
             <div>
-              <label className="text-[10px] uppercase tracking-widest font-bold text-brand-black block mb-4">Pilih Warna</label>
+              <label className="text-[10px] uppercase tracking-widest font-medium text-brand-black block mb-4">Pilih Warna</label>
               <div className="grid grid-cols-2 gap-2">
                 {COLORS.map(c => (
                   <button 

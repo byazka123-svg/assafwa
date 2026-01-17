@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Product, CartItem } from '../types';
 import { STRAPI_URL } from '../constants';
@@ -44,7 +43,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, o
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-10 md:py-16 animate-fadeIn">
       <button 
         onClick={onBack}
-        className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] font-bold text-gray-400 hover:text-brand-gold transition-colors mb-10"
+        className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] font-medium text-gray-400 hover:text-brand-gold transition-colors mb-10"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -68,16 +67,16 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, o
 
         <div className="flex flex-col">
           <div className="mb-10">
-            <span className="text-[9px] md:text-[11px] uppercase tracking-[0.5em] text-brand-gold font-bold mb-4 block">
+            <span className="text-[9px] md:text-[11px] uppercase tracking-[0.5em] text-brand-gold font-medium mb-4 block">
               {product.category?.name || 'Signature Edition'}
             </span>
-            <h1 className="text-3xl md:text-5xl font-bold brand-serif text-brand-black mb-6 leading-tight uppercase tracking-tight">{product.name}</h1>
-            <p className="text-2xl md:text-3xl font-bold text-brand-brown font-sans">IDR {product.price.toLocaleString('id-ID')}</p>
+            <h1 className="text-3xl md:text-5xl font-medium text-brand-black mb-6 leading-tight uppercase tracking-tight">{product.name}</h1>
+            <p className="text-2xl md:text-3xl font-medium text-brand-brown">IDR {product.price.toLocaleString('id-ID')}</p>
           </div>
 
           <div className="space-y-10 pb-10 border-b border-brand-cream/50">
             <div>
-              <label className="text-[10px] uppercase tracking-widest font-bold text-brand-black block mb-5">Pilih Ukuran</label>
+              <label className="text-[10px] uppercase tracking-widest font-medium text-brand-black block mb-5">Pilih Ukuran</label>
               <div className="flex flex-wrap gap-4">
                 {SIZES.map(s => (
                   <button 
@@ -103,7 +102,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, o
 
           <div className="mt-10 space-y-8">
             <div>
-              <h3 className="text-[11px] uppercase tracking-[0.2em] font-bold text-brand-black mb-4">Deskripsi Produk</h3>
+              <h3 className="text-[11px] uppercase tracking-[0.2em] font-medium text-brand-black mb-4">Deskripsi Produk</h3>
               <p className="text-gray-500 text-[14px] leading-relaxed font-light">
                 {product.description || "Didesain eksklusif oleh Assafwa dengan mengedepankan kualitas jahitan dan material."}
               </p>

@@ -1,0 +1,83 @@
+import React, { useState } from 'react';
+import { useAuth } from '../AuthContext';
+
+interface LoginPageProps {
+  onNavigateToSignup: () => void;
+  onLoginSuccess: () => void;
+}
+
+export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToSignup, onLoginSuccess }) => {
+  const { login } = useAuth();
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      const response = await login({ identifier, password });
+      if (response.error) {
+        throw new Error(response.error.message || 'Invalid credentials');
+      }
+      onLoginSuccess();
+    } catch (err: any) {
+      setError('Email atau password salah. Mohon coba lagi.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto px-4 py-16 animate-fadeIn">
+      <div className="text-center mb-10">
+        <h1 className="text-3xl font-medium uppercase tracking-widest text-brand-black">Login</h1>
+        <p className="text-gray-400 text-sm mt-2">Selamat datang kembali di Assafwa.</p>
+      </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-2">Email</label>
+          <input
+            type="email"
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
+            className="w-full p-4 bg-brand-white border border-brand-cream/50 rounded-sm text-sm text-brand-black placeholder-gray-400 focus:border-brand-gold outline-none transition-colors"
+            placeholder="email@anda.com"
+            required
+          />
+        </div>
+        <div>
+          <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-2">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-4 bg-brand-white border border-brand-cream/50 rounded-sm text-sm text-brand-black placeholder-gray-400 focus:border-brand-gold outline-none transition-colors"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+        {error && <p className="text-red-500 text-xs text-center">{error}</p>}
+        <div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-4 bg-brand-black text-white font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-brand-gold transition-all rounded-sm disabled:bg-gray-300"
+          >
+            {loading ? 'Memproses...' : 'Login'}
+          </button>
+        </div>
+        <div className="text-center">
+          <p className="text-xs text-gray-500">
+            Belum punya akun?{' '}
+            <button type="button" onClick={onNavigateToSignup} className="font-medium text-brand-gold hover:underline">
+              Daftar di sini
+            </button>
+          </p>
+        </div>
+      </form>
+    </div>
+  );
+};

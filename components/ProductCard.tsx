@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Product } from '../types';
 import { STRAPI_URL } from '../constants';
@@ -36,7 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCartCl
       </div>
       
       <div className="p-4 md:p-6 flex flex-col flex-grow text-center">
-        <span className="text-[7px] md:text-[8px] uppercase tracking-[0.4em] text-brand-gold font-bold mb-2">
+        <span className="text-[7px] md:text-[8px] uppercase tracking-[0.4em] text-brand-gold font-medium mb-2">
           {product.category?.name || 'Signature Series'}
         </span>
         <h3 className="text-[13px] md:text-base font-medium text-brand-black mb-2 line-clamp-1">
@@ -44,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCartCl
         </h3>
         
         <div className="mt-auto space-y-4">
-          <span className="text-xs md:text-base font-bold text-brand-brown block font-sans">
+          <span className="text-xs md:text-base font-medium text-brand-brown block">
             IDR {product.price.toLocaleString('id-ID')}
           </span>
           <button 
