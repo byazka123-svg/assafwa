@@ -37,7 +37,7 @@ export const SelectionModal: React.FC<SelectionModalProps> = ({ product, isOpen,
         <div className="p-6">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold font-medium block mb-1">Pilihan Koleksi</span>
+              <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-medium block mb-1">Pilihan Koleksi</span>
               <h2 className="text-xl font-medium text-brand-black">{product.name}</h2>
             </div>
             <button onClick={onClose} className="text-gray-400 hover:text-brand-black">
@@ -49,13 +49,13 @@ export const SelectionModal: React.FC<SelectionModalProps> = ({ product, isOpen,
 
           <div className="space-y-8">
             <div>
-              <label className="text-[10px] uppercase tracking-widest font-medium text-brand-black block mb-4">Pilih Ukuran</label>
+              <label className="text-xs uppercase tracking-widest font-medium text-brand-black block mb-4">Pilih Ukuran</label>
               <div className="grid grid-cols-4 gap-2">
                 {SIZES.map(s => (
                   <button 
                     key={s} 
                     onClick={() => setSelectedSize(s)}
-                    className={`py-3 text-[11px] font-bold border transition-all rounded-sm ${selectedSize === s ? 'bg-brand-black text-white border-brand-black' : 'border-brand-cream text-brand-brown hover:border-brand-gold'}`}
+                    className={`py-3 text-xs font-bold border transition-all rounded-sm ${selectedSize === s ? 'bg-brand-black text-white border-brand-black' : 'border-brand-cream text-brand-brown hover:border-brand-gold'}`}
                   >
                     {s}
                   </button>
@@ -64,13 +64,13 @@ export const SelectionModal: React.FC<SelectionModalProps> = ({ product, isOpen,
             </div>
 
             <div>
-              <label className="text-[10px] uppercase tracking-widest font-medium text-brand-black block mb-4">Pilih Warna</label>
+              <label className="text-xs uppercase tracking-widest font-medium text-brand-black block mb-4">Pilih Warna</label>
               <div className="grid grid-cols-2 gap-2">
                 {COLORS.map(c => (
                   <button 
                     key={c} 
                     onClick={() => setSelectedColor(c)}
-                    className={`py-3 text-[10px] font-bold border transition-all uppercase tracking-widest rounded-sm ${selectedColor === c ? 'bg-brand-black text-white border-brand-black' : 'border-brand-cream text-brand-brown hover:border-brand-gold'}`}
+                    className={`py-3 text-xs font-bold border transition-all uppercase tracking-widest rounded-sm ${selectedColor === c ? 'bg-brand-black text-white border-brand-black' : 'border-brand-cream text-brand-brown hover:border-brand-gold'}`}
                   >
                     {c}
                   </button>
@@ -80,7 +80,7 @@ export const SelectionModal: React.FC<SelectionModalProps> = ({ product, isOpen,
 
             <button 
               onClick={handleConfirm}
-              className="w-full py-5 bg-brand-gold text-white font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-brand-black transition-all shadow-xl shadow-brand-gold/20"
+              className="w-full py-5 bg-brand-gold text-white font-bold uppercase tracking-[0.2em] text-sm hover:bg-brand-black transition-all shadow-xl shadow-brand-gold/20"
             >
               Konfirmasi Pesanan
             </button>

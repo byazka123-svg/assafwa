@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { API_URL } from './constants';
 import { Product, CartItem, StrapiResponse } from './types';
 import { ProductCard } from './components/ProductCard';
-import { CartSidebar } from './components/CartSidebar';
+import { CartModal } from './components/CartSidebar';
 import { ProductDetail } from './components/ProductDetail';
 import { SelectionModal } from './components/SelectionModal';
 import { Profile } from './components/Profile';
@@ -158,7 +158,7 @@ const App: React.FC = () => {
         {/* Marquee, Hero, Categories */}
         <div className="bg-brand-cream/60 border-b border-brand-cream py-2 md:py-3 overflow-hidden whitespace-nowrap">
           <div className="flex animate-marquee">
-            <div className="flex items-center gap-12 md:gap-24 px-4 text-[9px] md:text-[11px] font-medium uppercase tracking-[0.3em] text-brand-brown">
+            <div className="flex items-center gap-12 md:gap-24 px-4 text-xs md:text-sm font-medium uppercase tracking-[0.3em] text-brand-brown">
               {[...Array(6)].map((_, i) => (
                 <span key={i} className="flex items-center gap-3">
                   <svg className="h-4 w-4 text-brand-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.81-.74-3.94-1.69-.15-.12-.29-.26-.43-.4-.02 2.75-.02 5.51-.02 8.26 0 1.45-.44 2.89-1.28 4.04-1.12 1.54-2.88 2.59-4.73 2.82-1.85.23-3.8-.18-5.32-1.26-1.52-1.07-2.58-2.77-2.86-4.6-.28-1.84.15-3.8 1.22-5.32 1.07-1.52 2.77-2.58 4.6-2.86.82-.12 1.65-.12 2.47-.02v4.04c-.66-.11-1.34-.06-1.97.16-.63.22-1.2.62-1.59 1.15-.39.53-.59 1.18-.56 1.83.03.65.29 1.28.73 1.75.44.47 1.05.77 1.71.84.66.07 1.32-.08 1.89-.42.57-.34 1.01-.86 1.24-1.48.23-.62.24-1.31.02-1.94V.02z"/></svg>
@@ -168,23 +168,23 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <section className="relative h-[25vh] md:h-[40vh] flex items-center justify-center overflow-hidden bg-brand-cream/20">
+        <section className="relative h-[30vh] md:h-[50vh] flex items-center justify-center overflow-hidden bg-brand-cream/20">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&q=80&w=1500')] bg-cover bg-center mix-blend-multiply opacity-[0.05]"></div>
           <div className="z-10 text-center px-6">
-            <span className="text-[8px] md:text-[10px] uppercase tracking-[0.6em] text-brand-gold font-medium mb-2 md:mb-4 block opacity-80">Collection 2024</span>
-            <h2 className="text-2xl md:text-5xl font-medium mb-2 md:mb-4 text-brand-black capitalize tracking-tight">
+            <span className="text-sm md:text-base uppercase tracking-[0.8em] text-brand-gold font-medium mb-4 md:mb-6 block opacity-80">Collection 2024</span>
+            <h2 className="text-5xl md:text-7xl font-medium mb-4 md:mb-6 text-brand-black capitalize tracking-tight">
               {activeCategory === 'all' ? 'Koleksi Signature' : activeCategory.replace('-', ' ')}
             </h2>
-            <div className="h-[1px] w-8 md:w-12 bg-brand-gold mx-auto"></div>
+            <div className="h-[2px] w-12 md:w-16 bg-brand-gold mx-auto"></div>
           </div>
         </section>
         <div className="bg-white border-b border-brand-cream/50">
           <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
-            <div className="flex justify-center items-center gap-4 md:gap-12 overflow-x-auto no-scrollbar">
+            <div className="grid grid-cols-5 gap-1 md:flex md:justify-center md:items-center md:gap-12">
               {categories.map(cat => (
-                <button key={cat.id} onClick={() => handleCategorySelect(cat.id)} className={`flex flex-col items-center gap-2 group transition-all duration-300 min-w-[60px] ${activeCategory === cat.id && currentView === 'home' && !selectedProduct ? 'text-brand-gold' : 'text-gray-400 hover:text-brand-black'}`}>
-                  <div className={`p-2.5 rounded-full transition-all duration-500 ${activeCategory === cat.id && currentView === 'home' && !selectedProduct ? 'bg-brand-gold/10' : 'bg-gray-50'}`}><div className="scale-90 md:scale-100">{cat.icon}</div></div>
-                  <span className="text-[8px] md:text-[10px] uppercase tracking-[0.2em] font-medium whitespace-nowrap">{cat.name}</span>
+                <button key={cat.id} onClick={() => handleCategorySelect(cat.id)} className={`flex flex-col items-center justify-center gap-2 group transition-all duration-300 py-2 ${activeCategory === cat.id && currentView === 'home' && !selectedProduct ? 'text-brand-gold' : 'text-gray-400 hover:text-brand-black'}`}>
+                  <div className={`p-3 rounded-full transition-all duration-500 ${activeCategory === cat.id && currentView === 'home' && !selectedProduct ? 'bg-brand-gold/10' : 'bg-gray-50'}`}>{cat.icon}</div>
+                  <span className="text-[10px] md:text-sm uppercase tracking-widest font-medium whitespace-nowrap">{cat.name}</span>
                 </button>
               ))}
             </div>
@@ -200,7 +200,7 @@ const App: React.FC = () => {
               ))}
             </div>
           ) : error ? (
-            <div className="text-center py-20"><p className="text-red-400 uppercase tracking-widest text-xs font-medium">{error}</p><button onClick={fetchProducts} className="mt-4 text-[10px] uppercase tracking-widest font-medium text-brand-gold underline">Coba Lagi</button></div>
+            <div className="text-center py-20"><p className="text-red-500 uppercase tracking-widest text-sm font-semibold">{error}</p><button onClick={fetchProducts} className="mt-4 text-sm uppercase tracking-widest font-medium text-brand-gold underline">Coba Lagi</button></div>
           ) : products.length > 0 ? (
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-y-16 md:gap-x-12">
               {products.map((product) => (
@@ -211,8 +211,8 @@ const App: React.FC = () => {
             </div>
           ) : (
             <div className="text-center py-20 flex flex-col items-center gap-4">
-              <svg className="h-12 w-12 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0l-8 4-8-4" /></svg>
-              <p className="text-gray-400 uppercase tracking-widest text-[10px] font-medium">Belum ada koleksi untuk kategori "{activeCategory}".</p>
+              <svg className="h-16 w-16 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0l-8 4-8-4" /></svg>
+              <p className="text-gray-400 uppercase tracking-widest text-sm font-medium">Belum ada koleksi untuk kategori "{activeCategory}".</p>
             </div>
           )}
         </main>
@@ -223,7 +223,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-white selection:bg-brand-gold selection:text-white pb-20 md:pb-0">
       <div className="bg-brand-black py-2.5 text-center">
-        <div className="max-w-7xl mx-auto px-4 text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-brand-gold font-medium">
+        <div className="max-w-7xl mx-auto px-4 text-xs uppercase tracking-[0.2em] text-brand-gold font-medium">
           JAM BUKA: 09.00 - 21.00 WIB | WHATSAPP: 0812 3456 789
         </div>
       </div>
@@ -231,9 +231,9 @@ const App: React.FC = () => {
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-cream/50 h-[70px] flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full flex items-center justify-between">
           <div className="flex flex-col cursor-pointer" onClick={() => navigateTo('home')}>
-            <h1 className="text-xl md:text-3xl font-medium tracking-[0.3em] text-brand-black uppercase">ASSAFWA</h1>
+            <h1 className="text-2xl md:text-4xl font-medium tracking-[0.3em] text-brand-black uppercase">ASSAFWA</h1>
           </div>
-          <nav className="hidden md:flex items-center gap-10 text-[10px] uppercase tracking-[0.3em] font-medium">
+          <nav className="hidden md:flex items-center gap-12 text-sm uppercase tracking-[0.2em] font-medium">
             <button onClick={() => navigateTo('home')} className={currentView === 'home' && !selectedProduct ? 'text-brand-gold' : 'text-brand-black hover:text-brand-gold transition-colors'}>Katalog</button>
             {!authLoading && (user ? (
               <button onClick={() => navigateTo('profile')} className={currentView === 'profile' ? 'text-brand-gold' : 'text-brand-black hover:text-brand-gold transition-colors'}>Profil</button>
@@ -243,9 +243,9 @@ const App: React.FC = () => {
             <button className="text-brand-black hover:text-brand-gold transition-colors">Bantuan</button>
           </nav>
           <div className="flex items-center gap-4">
-            <button onClick={() => setIsCartOpen(true)} className="relative p-2 text-brand-black hover:text-brand-gold transition-colors">
+            <button onClick={() => setIsCartOpen(true)} className="relative p-2 text-brand-black hover:text-brand-gold transition-colors hidden md:block">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-              {totalCartCount > 0 && <span className="absolute top-1 right-1 bg-brand-gold text-white text-[8px] font-bold px-1 py-0.5 rounded-full min-w-[17px]">{totalCartCount}</span>}
+              {totalCartCount > 0 && <span className="absolute top-1 right-1 bg-brand-gold text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px]">{totalCartCount}</span>}
             </button>
             <button onClick={() => setIsMobileMenuOpen(true)} className="md:hidden p-2 text-brand-black">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16m-7 6h7" /></svg>
@@ -258,7 +258,7 @@ const App: React.FC = () => {
       <div className={`fixed inset-0 bg-brand-black/60 backdrop-blur-sm z-[100] transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsMobileMenuOpen(false)}></div>
       <div className={`fixed top-0 right-0 h-full w-[280px] bg-white z-[101] shadow-2xl transform transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="p-6 border-b border-brand-cream flex justify-between items-center"><h2 className="font-medium text-lg tracking-widest uppercase">Menu</h2><button onClick={() => setIsMobileMenuOpen(false)} className="p-2"><svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg></button></div>
-        <nav className="p-8 flex flex-col gap-8 text-[11px] uppercase tracking-[0.3em] font-medium">
+        <nav className="p-8 flex flex-col gap-8 text-sm uppercase tracking-[0.2em] font-medium">
           <button onClick={() => navigateTo('home')} className="text-left py-2 border-b border-brand-cream/30 hover:text-brand-gold">Home</button>
           <button onClick={() => handleCategorySelect('all')} className="text-left py-2 border-b border-brand-cream/30 hover:text-brand-gold">Katalog</button>
           {!authLoading && (user ? (
@@ -274,19 +274,48 @@ const App: React.FC = () => {
 
       {renderContent()}
 
+      {/* Floating Bottom Menu for Mobile */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-cream/50 z-30 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+        <div className="grid grid-cols-4 h-[65px]">
+          <button onClick={() => navigateTo('home')} className={`flex flex-col items-center justify-center gap-1 text-[10px] uppercase tracking-widest transition-colors hover:text-brand-gold hover:bg-brand-gold/5 ${currentView === 'home' && !selectedProduct ? 'text-brand-gold' : 'text-gray-500'}`}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span>Home</span>
+          </button>
+          <button onClick={() => navigateTo(user ? 'profile' : 'login')} className={`flex flex-col items-center justify-center gap-1 text-[10px] uppercase tracking-widest transition-colors hover:text-brand-gold hover:bg-brand-gold/5 ${(currentView === 'profile' || currentView === 'login') ? 'text-brand-gold' : 'text-gray-500'}`}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span>{user ? 'Profil' : 'Login'}</span>
+          </button>
+          <button onClick={() => setIsCartOpen(true)} className="relative flex flex-col items-center justify-center gap-1 text-[10px] uppercase tracking-widest transition-colors text-gray-500 hover:text-brand-gold hover:bg-brand-gold/5">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+            {totalCartCount > 0 && <span className="absolute top-2 right-6 bg-brand-gold text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">{totalCartCount}</span>}
+            <span>Keranjang</span>
+          </button>
+          <button onClick={() => setIsMobileMenuOpen(true)} className="flex flex-col items-center justify-center gap-1 text-[10px] uppercase tracking-widest text-gray-500 transition-colors hover:text-brand-gold hover:bg-brand-gold/5">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span>Menu</span>
+          </button>
+        </div>
+      </div>
+
       <footer className="bg-brand-black text-white pt-20 pb-10 border-t border-brand-gold/20">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-            <div className="space-y-8 text-center md:text-left"><h2 className="text-3xl font-medium uppercase tracking-[0.3em]">ASSAFWA</h2><p className="text-gray-400 text-[11px] leading-relaxed tracking-wider uppercase opacity-60 max-w-xs mx-auto md:mx-0">Menyediakan busana muslim premium dengan kualitas kain terbaik dan desain eksklusif sejak 2018.</p></div>
-            <div className="text-center md:text-left"><h3 className="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-medium mb-8">Katalog</h3><ul className="space-y-4 text-[11px] uppercase tracking-[0.15em] text-gray-400 font-medium"><li><button onClick={() => handleCategorySelect('koko')} className="hover:text-white">Koleksi Koko</button></li><li><button onClick={() => handleCategorySelect('kurta')} className="hover:text-white">Koleksi Kurta</button></li><li><button onClick={() => handleCategorySelect('jubah')} className="hover:text-white">Koleksi Jubah</button></li></ul></div>
-            <div className="text-center md:text-left"><h3 className="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-medium mb-8">Bantuan</h3><ul className="space-y-4 text-[11px] uppercase tracking-[0.15em] text-gray-400 font-medium"><li><a href="#" className="hover:text-white">Status Pesanan</a></li><li><a href="#" className="hover:text-white">Kebijakan Retur</a></li></ul></div>
-            <div className="text-center md:text-left"><h3 className="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-medium mb-8">Offline Store</h3><p className="text-[10px] text-white/60 leading-relaxed uppercase">Pertokoan Assafwa, Blok C-04, Tanah Abang, Jakarta Pusat</p></div>
+            <div className="space-y-8 text-center md:text-left"><h2 className="text-3xl font-medium uppercase tracking-[0.3em]">ASSAFWA</h2><p className="text-sm leading-relaxed tracking-wider uppercase opacity-60 max-w-xs mx-auto md:mx-0">Menyediakan busana muslim premium dengan kualitas kain terbaik dan desain eksklusif sejak 2018.</p></div>
+            <div className="text-center md:text-left"><h3 className="text-sm uppercase tracking-[0.3em] font-medium mb-8 text-brand-gold">Katalog</h3><ul className="space-y-4 text-sm uppercase tracking-[0.15em] text-gray-400 font-medium"><li><button onClick={() => handleCategorySelect('koko')} className="hover:text-white">Koleksi Koko</button></li><li><button onClick={() => handleCategorySelect('kurta')} className="hover:text-white">Koleksi Kurta</button></li><li><button onClick={() => handleCategorySelect('jubah')} className="hover:text-white">Koleksi Jubah</button></li></ul></div>
+            <div className="text-center md:text-left"><h3 className="text-sm uppercase tracking-[0.3em] font-medium mb-8 text-brand-gold">Bantuan</h3><ul className="space-y-4 text-sm uppercase tracking-[0.15em] text-gray-400 font-medium"><li><a href="#" className="hover:text-white">Status Pesanan</a></li><li><a href="#" className="hover:text-white">Kebijakan Retur</a></li></ul></div>
+            <div className="text-center md:text-left"><h3 className="text-sm uppercase tracking-[0.3em] font-medium mb-8 text-brand-gold">Offline Store</h3><p className="text-xs text-white/60 leading-relaxed uppercase">Pertokoan Assafwa, Blok C-04, Tanah Abang, Jakarta Pusat</p></div>
           </div>
-          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"><p className="text-gray-600 text-[9px] uppercase tracking-[0.4em] font-medium text-center md:text-left">&copy; 2024 ASSAFWA SIGNATURE. ALL RIGHTS RESERVED.</p></div>
+          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"><p className="text-gray-600 text-xs uppercase tracking-[0.4em] font-medium text-center md:text-left">&copy; 2024 ASSAFWA SIGNATURE. ALL RIGHTS RESERVED.</p></div>
         </div>
       </footer>
       <SelectionModal product={productToConfigure} isOpen={!!productToConfigure} onClose={() => setProductToConfigure(null)} onConfirm={addToCart} />
-      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} items={cartItems} onRemove={removeFromCart} onUpdateQty={updateQuantity} onUpdateSelection={updateSelection} />
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} items={cartItems} onRemove={removeFromCart} onUpdateQty={updateQuantity} onUpdateSelection={updateSelection} />
     </div>
   );
 };

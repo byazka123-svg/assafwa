@@ -39,7 +39,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigateToLogin, onSig
       </div>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-2">Username</label>
+          <label className="text-xs uppercase tracking-widest font-medium text-brand-gold block mb-2">Username</label>
           <input
             type="text"
             value={username}
@@ -50,7 +50,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigateToLogin, onSig
           />
         </div>
         <div>
-          <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-2">Email</label>
+          <label className="text-xs uppercase tracking-widest font-medium text-brand-gold block mb-2">Email</label>
           <input
             type="email"
             value={email}
@@ -61,7 +61,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigateToLogin, onSig
           />
         </div>
         <div>
-          <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold block mb-2">Password</label>
+          <label className="text-xs uppercase tracking-widest font-medium text-brand-gold block mb-2">Password</label>
           <input
             type="password"
             value={password}
@@ -71,18 +71,18 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigateToLogin, onSig
             required
           />
         </div>
-        {error && <p className="text-red-500 text-xs text-center">{error}</p>}
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
         <div>
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-brand-black text-white font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-brand-gold transition-all rounded-sm disabled:bg-gray-300"
+            className="w-full py-4 bg-brand-black text-white font-bold uppercase tracking-[0.2em] text-sm hover:bg-brand-gold transition-all rounded-sm disabled:bg-gray-300"
           >
             {loading ? 'Memproses...' : 'Daftar'}
           </button>
         </div>
         <div className="text-center">
-          <p className="text-xs text-gray-500">
+          <p className="text-sm text-gray-500">
             Sudah punya akun?{' '}
             <button type="button" onClick={onNavigateToLogin} className="font-medium text-brand-gold hover:underline">
               Login di sini

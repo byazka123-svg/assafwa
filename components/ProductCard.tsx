@@ -35,15 +35,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCartCl
       </div>
       
       <div className="p-4 md:p-6 flex flex-col flex-grow text-center">
-        <span className="text-[7px] md:text-[8px] uppercase tracking-[0.4em] text-brand-gold font-medium mb-2">
+        <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-medium mb-2">
           {product.category?.name || 'Signature Series'}
         </span>
-        <h3 className="text-[13px] md:text-base font-medium text-brand-black mb-2 line-clamp-1">
+        <h3 className="text-base md:text-lg font-medium text-brand-black mb-2 line-clamp-1">
           {product.name}
         </h3>
         
-        <div className="mt-auto space-y-4">
-          <span className="text-xs md:text-base font-medium text-brand-brown block">
+        <div className="mt-auto space-y-4 pt-2">
+          <span className="text-sm md:text-base font-medium text-brand-brown block">
             IDR {product.price.toLocaleString('id-ID')}
           </span>
           <button 
@@ -51,7 +51,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCartCl
               e.stopPropagation();
               onAddToCartClick(product);
             }}
-            className="w-full py-2.5 md:py-3.5 bg-brand-black text-white text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-brand-gold transition-all duration-300 transform active:scale-95"
+            className="w-full py-3 md:py-3.5 bg-brand-black text-white text-xs font-bold uppercase tracking-widest hover:bg-brand-gold transition-all duration-300 transform active:scale-95"
           >
             Add To Cart
           </button>

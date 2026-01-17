@@ -30,7 +30,7 @@ export const Profile: React.FC<ProfileProps> = ({ onBack, onLogout }) => {
       {/* Back Button */}
       <button 
         onClick={onBack}
-        className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-medium text-gray-400 hover:text-brand-gold transition-colors mb-8"
+        className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium text-gray-400 hover:text-brand-gold transition-colors mb-8"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -47,9 +47,9 @@ export const Profile: React.FC<ProfileProps> = ({ onBack, onLogout }) => {
               {userInitial}
             </div>
             <div>
-              <span className="text-[9px] uppercase tracking-[0.3em] text-brand-gold font-medium">Gold Member</span>
+              <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-medium">Gold Member</span>
               <h2 className="text-xl md:text-2xl font-medium mt-1 capitalize">{user.username}</h2>
-              <p className="text-[11px] text-gray-400 mt-1 opacity-70">{user.email}</p>
+              <p className="text-sm text-gray-400 mt-1 opacity-70">{user.email}</p>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@ export const Profile: React.FC<ProfileProps> = ({ onBack, onLogout }) => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`flex-1 py-4 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium transition-all relative ${
+            className={`flex-1 py-4 text-xs md:text-sm uppercase tracking-[0.2em] font-medium transition-all relative ${
               activeTab === tab.id ? 'text-brand-black' : 'text-gray-400 hover:text-brand-black'
             }`}
           >
@@ -82,21 +82,21 @@ export const Profile: React.FC<ProfileProps> = ({ onBack, onLogout }) => {
           <div className="space-y-8 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-1">
-                <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold">Username</label>
-                <p className="text-brand-black font-medium border-b border-brand-cream/50 pb-2 capitalize">{user.username}</p>
+                <label className="text-xs uppercase tracking-widest font-medium text-brand-gold">Username</label>
+                <p className="text-brand-black font-medium border-b border-brand-cream/50 pb-2 capitalize text-base">{user.username}</p>
               </div>
                <div className="space-y-1">
-                <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold">Email</label>
-                <p className="text-brand-black font-medium border-b border-brand-cream/50 pb-2">{user.email}</p>
+                <label className="text-xs uppercase tracking-widest font-medium text-brand-gold">Email</label>
+                <p className="text-brand-black font-medium border-b border-brand-cream/50 pb-2 text-base">{user.email}</p>
               </div>
               <div className="md:col-span-2 space-y-1">
-                <label className="text-[9px] uppercase tracking-widest font-medium text-brand-gold">Alamat Utama</label>
+                <label className="text-xs uppercase tracking-widest font-medium text-brand-gold">Alamat Utama</label>
                 <p className="text-gray-400 italic border-b border-brand-cream/50 pb-2 leading-relaxed">
                   Belum diatur.
                 </p>
               </div>
             </div>
-            <button className="px-8 py-3 bg-brand-black text-white text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-brand-gold transition-all rounded-sm">
+            <button className="px-8 py-3 bg-brand-black text-white text-xs uppercase tracking-[0.2em] font-bold hover:bg-brand-gold transition-all rounded-sm">
               Edit Profil
             </button>
           </div>
@@ -109,13 +109,13 @@ export const Profile: React.FC<ProfileProps> = ({ onBack, onLogout }) => {
                 <div className="space-y-1">
                   <div className="flex items-center gap-3">
                     <span className="font-medium text-sm text-brand-black">{order.id}</span>
-                    <span className="px-2 py-0.5 bg-green-50 text-green-700 text-[9px] uppercase font-bold rounded-full">{order.status}</span>
+                    <span className="px-2 py-0.5 bg-green-50 text-green-700 text-xs uppercase font-bold rounded-full">{order.status}</span>
                   </div>
-                  <p className="text-[11px] text-gray-400">{order.date}</p>
+                  <p className="text-sm text-gray-400">{order.date}</p>
                 </div>
                 <div className="text-right space-y-1">
                   <p className="font-medium text-sm text-brand-brown">IDR {order.total.toLocaleString('id-ID')}</p>
-                  <button className="text-[9px] uppercase tracking-widest font-medium text-brand-gold group-hover:underline">Detail Pesanan</button>
+                  <button className="text-xs uppercase tracking-widest font-medium text-brand-gold group-hover:underline">Detail Pesanan</button>
                 </div>
               </div>
             ))}
@@ -126,7 +126,7 @@ export const Profile: React.FC<ProfileProps> = ({ onBack, onLogout }) => {
 
       {/* Logout */}
       <div className="mt-16 pt-8 border-t border-brand-cream text-center md:text-left">
-        <button onClick={onLogout} className="text-[10px] uppercase tracking-[0.3em] font-medium text-red-800 hover:text-red-600 transition-colors flex items-center justify-center md:justify-start gap-2 mx-auto md:mx-0">
+        <button onClick={onLogout} className="text-xs uppercase tracking-[0.3em] font-medium text-red-800 hover:text-red-600 transition-colors flex items-center justify-center md:justify-start gap-2 mx-auto md:mx-0">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
